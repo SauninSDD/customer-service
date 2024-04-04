@@ -70,6 +70,7 @@ public class OrderController {
         String clientId = order.getClientId();
         log.info("Очищаем корзину пользователся с Id: {}", clientId);
         cartService.deleteAllDish();
+        log.info("id order {}", idCreatedOrder);
         return ResponseEntity.ok().body(idCreatedOrder);
     }
 

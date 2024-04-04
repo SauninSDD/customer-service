@@ -46,7 +46,7 @@ const Header: FC = () => {
 
     return (
         <div className="header">
-            <Row gutter={16} align="middle">
+            <Row gutter={20} align="middle">
                 <Col flex="auto">
                     <p className="header__cityLink" onClick={openModal}>
                         <EnvironmentOutlined style={{ fontSize: '16px', paddingRight: '5px' }} />
@@ -65,6 +65,12 @@ const Header: FC = () => {
                         Сегодня с 9:00 до 00:00
                     </p>
                 </Col>
+                <Col>
+                <p className="header__workTime1">
+
+                    Текущий пользователь: saunindaniil11
+                </p>
+            </Col>
             </Row>
 
             <Modal

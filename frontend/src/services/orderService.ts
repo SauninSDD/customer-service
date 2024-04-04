@@ -4,7 +4,6 @@ import authHeader from "./auth-header";
 import {AppDispatch} from "../store";
 import {IOrderFromHistory, IOrderResponse} from "../types/types";
 import CartService from "./cartService";
-import {user} from "../constants/constants";
 
 const API_URL = "/orders";
 

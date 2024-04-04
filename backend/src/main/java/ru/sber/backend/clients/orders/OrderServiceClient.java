@@ -27,7 +27,7 @@ public interface OrderServiceClient {
      * @param orderResponse объект заказа
      * @return объект созданного заказа
      */
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping
     Long createOrder(@RequestHeader("Authorization") String bearerToken, @RequestBody OrderResponse orderResponse);
 
     /**

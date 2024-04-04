@@ -10,6 +10,7 @@ import ru.sber.backend.entities.CartItem;
 import ru.sber.backend.repositories.CartItemRepository;
 import ru.sber.backend.repositories.CartRepository;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,7 @@ public class CartServiceImpl implements CartService {
     }
 
 
+    @Transactional
     @Override
     public boolean addToCart(long dishId) {
         String clientId = getIdClient();
@@ -52,10 +54,14 @@ public class CartServiceImpl implements CartService {
             CartItem existingCartItem = cartItem.get();
             existingCartItem.setQuantity(existingCartItem.getQuantity() + 1);
         } else {
+
             CartItem newCartItem = new CartItem();
             newCartItem.setCart(shoppingCart);
             newCartItem.setDishId(dishId);
             newCartItem.setQuantity(1);
+            if(shoppingCart.getCartItems() == null) {
+                shoppingCart.setCartItems(new ArrayList<>());
+            }
             shoppingCart.getCartItems().add(newCartItem);
         }
 
@@ -77,11 +83,12 @@ public class CartServiceImpl implements CartService {
         return false;
     }
 
+    @Transactional
     @Override
     public boolean deleteAllDish() {
         Optional<Cart> cart = cartRepository.findCartByClient(getIdClient());
-        log.info("Удаление товара из корзины: {} по id: {}", cart, getIdClient());
         if (cart.isPresent()) {
+            log.info("Удаление товара из корзины: {} по id: {}", cart.get().getId(), getIdClient());
             cartItemRepository.deleteAllByCart_Id(cart.get().getId());
             return true;
         }

@@ -13,7 +13,7 @@ const API_URL = "/api/auth";
  */
 const register = (registration: IRegistration) => {
     const { username, number, dateOfBirth, email, password } = registration;
-    return axios.post(API_URL + "signup", {
+    return axios.post(API_URL + "/signup", {
         username,
         number,
         dateOfBirth,

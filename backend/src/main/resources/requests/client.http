@@ -17,8 +17,8 @@ POST localhost:8084/api/auth/signin
 Content-Type: application/json
 
 {
-  "username": "keku",
-  "password": ")MP9wB^WL5DQ3&w(-9g="
+  "username": "test4",
+  "password": "password"
 }
 
 

@@ -24,7 +24,6 @@ const ModalCardDish: FC<ModalCardDishProps> =
         const [isLogged] = useState<boolean>(user !== null);
         const dispatch = useAppDispatch();
         const dishFromCartById: IDishFromCart | undefined = useAppSelector((state) => state.cart.cartItems.find(item => item.id === dish.id))
-        console.log(dishFromCartById)
         const handleAddClick = () => {
             isLogged && (
                 CartService.addToCart(dish.id, dispatch)

@@ -4,16 +4,14 @@ import './App.css';
 import NavigationMenu from "./components/generals/NavMenu";
 import {FloatButton} from "antd";
 import Header from "./components/generals/Header";
-import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "./store";
 import authService from "./services/authService";
+import {useAppDispatch, useAppSelector} from "./hooks";
 
 
 const App = () => {
-    const [loading, setLoading] = useState(true);
-    const user = useSelector((state: RootState) => state.auth.user);
-    const dispatch = useDispatch();
+    const [loading, setLoading] = useState<boolean>(true);
+    const user = useAppSelector((state) => state.auth.user);
+    const dispatch = useAppDispatch();
 
 
     useEffect(() => {
@@ -27,6 +25,7 @@ const App = () => {
     useEffect(() => {
         refreshToken();
     }, []);
+
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);

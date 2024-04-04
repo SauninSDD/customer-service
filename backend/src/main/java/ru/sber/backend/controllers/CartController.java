@@ -10,6 +10,7 @@ import ru.sber.backend.entities.CartItem;
 import ru.sber.backend.models.DishFromCart;
 import ru.sber.backend.services.CartService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,10 @@ public class CartController {
                 .substring(1, listDishesIds.toString().length() - 1).replaceAll("\\s", "");
 
         log.info("Получаем список блюд в корзине по строке с id блюд: {}", stringWithDishesIds);
+
+        if(stringWithDishesIds.isEmpty()){
+            return ResponseEntity.ok().body(new ArrayList<>());
+        }
 
         List<DishFromCart> dishes = restaurantService.getListDishesById(stringWithDishesIds).stream()
                 .peek(dish -> {
@@ -120,7 +125,7 @@ public class CartController {
         boolean isDeleted = cartService.deleteDish(dishId);
 
         if (isDeleted) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.badRequest().body("Не удалось удалить блюдо");
         }

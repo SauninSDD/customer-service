@@ -55,6 +55,8 @@ public class OrderServiceImpl implements OrderService {
         orderResponse.setClientId(jwtService.getSubClaim(jwtService.getJwtSecurityContext()));
         orderResponse.setClientName(jwtService.getPreferredUsernameClaim(jwtService.getJwtSecurityContext()));
         orderResponse.setClientPhoneNumber(jwtService.getPhoneNumberClaim(jwtService.getJwtSecurityContext()));
+        log.info("token {}", orderToken.get(0).getAccessToken());
+
         return orderServiceClient.createOrder("Bearer " + orderToken.get(0).getAccessToken(), orderResponse);
     }
 

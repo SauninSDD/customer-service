@@ -7,7 +7,7 @@ import React, {FC} from 'react';
 const Offer: FC = () => {
     return (
         <div>
-
+            Можно к Вам?
         </div>
     );
 };
